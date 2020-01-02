@@ -1,6 +1,6 @@
 # Youtube Video To MP3 (v.1)
 Convert and download youtube videos to mp3 (audio) for free. There is no registration or software needed.
-<img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" style="display:inline-block; margin:0 auto;">
+<img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" style="display:block; margin:0 auto;">
 You can get Video:
 <ol>
   <li>Title.</li>
