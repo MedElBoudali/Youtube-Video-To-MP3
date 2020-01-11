@@ -1,0 +1,22 @@
+{
+  "name": "youtube-mp3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "M",
+  "license": "ISC",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "moment": "^2.24.0",
+    "path": "^0.12.7",
+    "socket.io": "^2.3.0",
+    "ytdl-core": "^1.0.5"
+  }
+}

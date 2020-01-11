@@ -1,0 +1,92 @@
+<%- include("partials/header") %>
+<div class="container thumbnailContainer">
+  <div class="row">
+    <div
+      class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 justify-content-center"
+    >
+      <img
+        id="thumbnail"
+        src="https://img.youtube.com/vi/<%=videoid%>/hqdefault.jpg"
+      />
+    </div>
+    <div
+      class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 justify-content-start"
+    >
+      <h1 class="videoTitle"><%=info.title%></h1>
+      <h3 class="views">
+        <i class="fas fa-eye"></i>
+        <span class="viewsNumber"
+          ><%=info.player_response.videoDetails.viewCount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,
+          "$1,")%> views • <%=date%></span
+        >
+      </h3>
+      <h3 class="authorName">
+        <img src="<%=info.author.avatar%>" alt="" class="authorLogo" />
+        <%=info.author.name%> <%if(info.author.verified){%>
+        <svg
+          viewBox="0 0 24 24"
+          preserveAspectRatio="xMidYMid meet"
+          focusable="false"
+          class="style-scope yt-icon"
+        >
+          <g class="style-scope yt-icon">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10 S17.52,2,12,2z M9.92,17.93l-4.95-4.95l2.05-2.05l2.9,2.9l7.35-7.35l2.05,2.05L9.92,17.93z"
+              class="style-scope yt-icon"
+            ></path>
+          </g>
+        </svg>
+        <%}%>
+      </h3>
+      <div class="alert alert-warning pBlock" role="alert">
+        <span class="pTitle">Progress:</span>
+        <span class="pText"
+          ><i class="fas fa-download"></i>
+          <span class="kbDown">Loading ...</span></span
+        >
+      </div>
+      <form action="/download?id=<%=videoid%>" method="POST">
+        <input
+          type="hidden"
+          name="songName"
+          name="songName"
+          value="<%=info.title%>"
+        />
+        <input
+          type="hidden"
+          name="videoID"
+          name="videoID"
+          value="<%=videoid%>.mp3"
+        />
+        <button type="submit" id="percent" disabled>
+          Loading ...
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const downloadBTN = document.querySelector("#percent");
+  const kbDown = document.querySelector(".kbDown");
+  const pAlert = document.querySelector(".pBlock");
+  const views = document.querySelector(".viewsNumber");
+
+  let socket = io();
+  
+  socket.on('progress', function(data) {
+    kbDown.textContent = data;
+  });
+  socket.on("done", function(data) {
+    pAlert.classList.remove("alert-warning");
+    pAlert.classList.add("alert-success");
+    pAlert.innerHTML +=
+      '<span class="pText"><i class="fas fa-sync-alt"></i> Video Converted To MP3.</span>';
+    pAlert.innerHTML += `<span class="pText"><i class="far fa-check-circle"></i> ${data}</span>`;
+    downloadBTN.textContent = "Download";
+    downloadBTN.disabled = false;
+  });
+</script>
+<%- include("partials/footer") %>

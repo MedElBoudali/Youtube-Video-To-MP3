@@ -1,0 +1,13 @@
+<%- include("partials/header") %>
+<div class="formContainer">
+    <%- include("messages") %>
+    <form action="/convert" method="post">
+        <input type="text" name="youtubeURL" id="youtubeURL" placeholder="EX: https://www.youtube.com/watch?v=kJQP7kiw5Fk" required>
+        <input type="submit" value="Convert Video">
+    </form>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+let socket = io();
+</script>
+<%- include("partials/footer") %>
