@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 let webSocketClients = [];
 
-io.on("connection", socket => {
+io.sockets.on("connection", socket => {
     app.set('sockedID', socket.id);
     socket.join(socket.id);
     socket.on("disconnect", socket => console.log(`Disconected ${socket.id}`));
