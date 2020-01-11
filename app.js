@@ -8,7 +8,7 @@ const io = require("socket.io")(http);
 
 app.set('io', io);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 let webSocketClients = [];
 
