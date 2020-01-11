@@ -3,8 +3,8 @@ const flash = require("connect-flash");
 const session = require('express-session');
 const path = require('path');
 const app = express();
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
 
 app.set('io', io);
 
@@ -37,4 +37,4 @@ app.use((req, res, next) => {
 //@Routes
 app.use('/', require('./models/routes/home'));
 
-http.listen(PORT, () => console.log('Connected'));
+server.listen(PORT, () => console.log('Connected'));
