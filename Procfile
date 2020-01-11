@@ -1,1 +1,2 @@
-worker:node app.js
+web: echo "useless"
+service: node app.js
