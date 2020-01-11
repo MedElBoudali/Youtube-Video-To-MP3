@@ -1,6 +1,6 @@
 const express = require('express');
 const flash = require("connect-flash");
-const session = require('express-session');
+const session = require('cookie-session');
 const path = require('path');
 const app = express();
 const http = require("http").Server(app);
