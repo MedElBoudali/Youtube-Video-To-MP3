@@ -74,7 +74,7 @@
   const pAlert = document.querySelector(".pBlock");
   const views = document.querySelector(".viewsNumber");
 
-  let socket = io();
+  let socket = io('ws://ytubetomp3.herokuapp.com/:3000');
   
   socket.on('progress', function(data) {
     kbDown.textContent = data;
