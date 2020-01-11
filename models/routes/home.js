@@ -38,7 +38,7 @@ router.post("/convert", (req, res) => {
             quality: "highestaudio"
           })
         )
-          .setFfmpegPath("./ffmpeg/ffmpeg.exe")
+          .setFfmpegPath("./ffmpeg/ffmpeg")
           .audioBitrate(128)
           .save(`./mp3/${videoID}.mp3`)
           .on("progress", p => {
